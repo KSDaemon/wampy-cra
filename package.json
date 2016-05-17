@@ -2,13 +2,19 @@
   "name": "wampy-cra",
   "version": "0.0.1",
   "description": "Wampy.js challenge response authentication (CRA) plugin",
-  "main": "src/wampy-cra.js",
-  "scripts": {
-    "test": "mocha -R spec"
+  "author": "Konstantin Burkalev <KSDaemon@ya.ru> (http://ksdaemon.ru)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KSDaemon/wampy-cra/issues"
   },
+  "homepage": "https://github.com/KSDaemon/wampy-cra#readme",
+  "main": "src/wampy-cra.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/KSDaemon/wampy-cra.git"
+  },
+  "dependencies": {
+    "crypto-js": "^3.1.6"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.6.0",
@@ -30,13 +36,11 @@
     "Response",
     "Authentication"
   ],
-  "author": "Konstantin Burkalev <KSDaemon@ya.ru> (http://ksdaemon.ru)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/KSDaemon/wampy-cra/issues"
-  },
-  "homepage": "https://github.com/KSDaemon/wampy-cra#readme",
-  "dependencies": {
-    "crypto-js": "^3.1.6"
+  "scripts": {
+    "build": "grunt",
+    "lint": "eslint src",
+    "lint:fix": "eslint --fix src",
+    "test": "mocha -R spec",
+    "cover": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec"
   }
 }

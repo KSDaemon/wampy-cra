@@ -11,7 +11,8 @@
  */
 
 // Module boilerplate to support browser globals and browserify and AMD.
-(typeof define === 'function' ? function (m) {
+(
+    typeof define === 'function' ? function (m) {
         define('WampyCra', m);
     } :
         typeof exports === 'object' ? function (m) {
@@ -26,7 +27,7 @@
         isNode = (typeof process === 'object' && Object.prototype.toString.call(process) === '[object process]'),
         crypto = isNode ? require('crypto') : require('crypto-js');
 
-    function derive_key(secret, salt, iterations = 1000, keylen = 32) {
+    function derive_key (secret, salt, iterations = 1000, keylen = 32) {
         let key;
 
         if (isNode) {
@@ -44,7 +45,7 @@
         }
     }
 
-    function sign(key, challenge) {
+    function sign (key, challenge) {
         if (isNode) {
             let hmac = crypto.createHmac('sha256', key);
             hmac.update(challenge);
@@ -54,10 +55,10 @@
         }
     }
 
-    function auto(secret) {
+    function auto (secret) {
 
         return function (method, info) {
-            if (method === "wampcra") {
+            if (method === 'wampcra') {
 
                 if (info.salt) {
                     return sign(derive_key(secret, info.salt, info.iterations, info.keylen), info.challenge);
