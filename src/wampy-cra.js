@@ -26,7 +26,7 @@
         isNode = (typeof process === 'object' && Object.prototype.toString.call(process) === '[object process]'),
         crypto = isNode ? require('crypto') : require('crypto-js');
 
-    WampyCra.derive_key = function (secret, salt, iterations = 1000, keylen = 32) {
+    function derive_key(secret, salt, iterations = 1000, keylen = 32) {
         let key;
 
         if (isNode) {
@@ -42,9 +42,9 @@
             key = crypto.PBKDF2(secret, salt, config);
             return key.toString(crypto.enc.Base64);
         }
-    };
+    }
 
-    WampyCra.sign = function (key, challenge) {
+    function sign(key, challenge) {
         if (isNode) {
             let hmac = crypto.createHmac('sha256', key);
             hmac.update(challenge);
@@ -52,7 +52,28 @@
         } else {
             return crypto.HmacSHA256(challenge, key).toString(crypto.enc.Base64);
         }
-    };
+    }
+
+    function auto(secret) {
+
+        return function (method, info) {
+            if (method === "wampcra") {
+
+                if (info.salt) {
+                    return sign(derive_key(secret, info.salt, info.iterations, info.keylen), info.challenge);
+                } else {
+                    return sign(secret, info.challenge);
+                }
+
+            } else {
+                throw new Error('Unknown authentication method requested!');
+            }
+        };
+    }
+
+    WampyCra.derive_key = derive_key;
+    WampyCra.sign = sign;
+    WampyCra.auto = auto;
 
     return WampyCra;
 
