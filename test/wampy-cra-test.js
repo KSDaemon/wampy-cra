@@ -66,11 +66,8 @@ describe('Wampy-cra plugin', function () {
                 keylen    : 16
             };
 
-        try {
-            res = auto('notwampcra', challengeInfo);
-        } catch (e) {
-            expect(e.message).to.be.equal('Unknown authentication method requested!');
-        }
+        expect(function () { auto('notwampcra', challengeInfo); }).to.throw('Unknown authentication method requested!');
+
     });
 
 });
