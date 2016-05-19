@@ -61,7 +61,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     function auto(secret) {
 
         return function (method, info) {
-            if (method === "wampcra") {
+            if (method === 'wampcra') {
 
                 if (info.salt) {
                     return sign(derive_key(secret, info.salt, info.iterations, info.keylen), info.challenge);
