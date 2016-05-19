@@ -1,13 +1,13 @@
 {
   "name": "wampy-cra",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Wampy.js challenge response authentication (CRA) plugin",
   "author": "Konstantin Burkalev <KSDaemon@ya.ru> (http://ksdaemon.ru)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/KSDaemon/wampy-cra/issues"
   },
-  "homepage": "https://github.com/KSDaemon/wampy-cra#readme",
+  "homepage": "https://github.com/KSDaemon/wampy-cra",
   "main": "src/wampy-cra.js",
   "repository": {
     "type": "git",
