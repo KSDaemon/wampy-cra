@@ -9,6 +9,7 @@ wampy-cra.js
 [![Dependency Status][depstat-image]][depstat-url]
 [![DevDependency Status][depstat-dev-image]][depstat-dev-url]
 [![MIT License][license-image]][license-url]
+[![Greenkeeper badge][greenkeeper-image]][greenkeeper-url]
 
 Description
 ===========
@@ -44,3 +45,6 @@ See usage examples in Wampy.js docs section
 
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg
 [license-url]: http://opensource.org/licenses/MIT
+
+[greenkeeper-image]: https://badges.greenkeeper.io/KSDaemon/wampy-cra.svg
+[greenkeeper-url]: https://greenkeeper.io/
