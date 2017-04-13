@@ -1,6 +1,8 @@
 wampy-cra.js
 ============
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/KSDaemon/wampy-cra.svg)](https://greenkeeper.io/)
+
 [WAMP][] Challenge Response Authentication plugin for [Wampy.js][].
 
 [![NPM version][npm-image]][npm-url]
