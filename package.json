@@ -22,7 +22,7 @@
     "chai": "^4.1.1",
     "coveralls": "^3.0.0",
     "grunt": "^1.0.1",
-    "grunt-babel": "^7.0.0",
+    "grunt-babel": "^8.0.0",
     "grunt-contrib-uglify": "^4.0.0",
     "istanbul": "^1.1.0-alpha.1",
     "load-grunt-tasks": "^3.5.2",
