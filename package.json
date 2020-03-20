@@ -1,6 +1,6 @@
 {
   "name": "wampy-cra",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Wampy.js challenge response authentication (CRA) plugin",
   "author": "Konstantin Burkalev <KSDaemon@ya.ru> (http://ksdaemon.ru)",
   "license": "MIT",
@@ -17,7 +17,8 @@
     "crypto-js": "^4.0.0"
   },
   "devDependencies": {
-    "babel-preset-es2015": "^6.24.1",
+    "@babel/core": "^7.8.7",
+    "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
     "chai": "^4.2.0",
     "coveralls": "^3.0.11",
