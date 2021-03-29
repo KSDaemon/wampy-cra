@@ -24,6 +24,9 @@ signed message, using only secret key. This function can be passed as onChalleng
 See usage examples in Wampy.js docs section
 ["Challenge Response Authentication"](https://github.com/KSDaemon/wampy.js#challenge-response-authentication)
 
+Thanks JetBrains for the best IDEs and support for open source!
+
+[![jetbrains logo]][jetbrains url]
 
 [Wampy.js]: https://github.com/KSDaemon/wampy.js
 [WAMP]: http://wamp-proto.org/
@@ -48,3 +51,6 @@ See usage examples in Wampy.js docs section
 
 [greenkeeper-image]: https://badges.greenkeeper.io/KSDaemon/wampy-cra.svg
 [greenkeeper-url]: https://greenkeeper.io/
+
+[jetbrains logo]: jetbrains.svg
+[jetbrains url]: (https://www.jetbrains.com)
