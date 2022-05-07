@@ -43,7 +43,19 @@
     "build": "grunt",
     "lint": "eslint src",
     "lint:fix": "eslint --fix src",
-    "test": "mocha --require babel-core/register -R spec",
+    "test": "NODE_ENV=test nyc ./node_modules/mocha/bin/mocha --exit  --require babel-core/register -R spec",
     "cover": "nyc report"
+  },
+  "nyc": {
+    "include": [
+      "src/*.js"
+    ],
+    "report-dir": "./coverage",
+    "temp-dir": "./coverage",
+    "reporter": [
+      "lcov",
+      "text-summary",
+      "html"
+    ]
   }
 }
