@@ -4,12 +4,10 @@ wampy-cra.js
 [WAMP][] Challenge Response Authentication plugin for [Wampy.js][].
 
 [![NPM version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
+[![Build Status][gh-build-test-image]][gh-build-test-url]
 [![Code coverage][coveralls-image]][coveralls-url]
-[![Dependency Status][depstat-image]][depstat-url]
-[![DevDependency Status][depstat-dev-image]][depstat-dev-url]
 [![MIT License][license-image]][license-url]
-[![Greenkeeper badge][greenkeeper-image]][greenkeeper-url]
+[![Known Vulnerabilities][snyk-image]][snyk-url]
 
 Description
 ===========
@@ -34,23 +32,21 @@ Thanks JetBrains for the best IDEs and support for open source!
 [npm-url]: https://www.npmjs.com/package/wampy-cra
 [npm-image]: https://img.shields.io/npm/v/wampy-cra.svg?style=flat
 
-[travis-url]: https://travis-ci.org/KSDaemon/wampy-cra
-[travis-image]: https://img.shields.io/travis/KSDaemon/wampy-cra/master.svg?style=flat
+[gh-build-test-url]: https://github.com/KSDaemon/wampy-cra/actions/workflows/build-and-test.yml
+[gh-build-test-image]: https://github.com/KSDaemon/wampy-cra/actions/workflows/build-and-test.yml/badge.svg
 
 [coveralls-url]: https://coveralls.io/github/KSDaemon/wampy-cra
 [coveralls-image]: https://img.shields.io/coveralls/KSDaemon/wampy-cra/master.svg?style=flat
 
-[depstat-url]: https://david-dm.org/KSDaemon/wampy-cra
-[depstat-image]: https://david-dm.org/KSDaemon/wampy-cra.svg?style=flat
-
-[depstat-dev-url]: https://david-dm.org/KSDaemon/wampy-cra
-[depstat-dev-image]: https://david-dm.org/KSDaemon/wampy-cra/master-status.svg?style=flat
-
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg
 [license-url]: http://opensource.org/licenses/MIT
 
-[greenkeeper-image]: https://badges.greenkeeper.io/KSDaemon/wampy-cra.svg
-[greenkeeper-url]: https://greenkeeper.io/
+[snyk-image]: https://snyk.io/test/github/KSDaemon/wampy-cra/badge.svg?targetFile=package.json
+[snyk-url]: https://snyk.io/test/github/KSDaemon/wampy-cra?targetFile=package.json
 
 [jetbrains logo]: jetbrains.svg
 [jetbrains url]: (https://www.jetbrains.com)
+
+
+
+
