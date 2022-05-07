@@ -14,7 +14,7 @@
     "url": "git://github.com/KSDaemon/wampy-cra.git"
   },
   "dependencies": {
-    "crypto-js": "^4.0.0"
+    "crypto-js": "^4.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
