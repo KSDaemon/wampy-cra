@@ -24,7 +24,7 @@
     "coveralls": "^3.1.1",
     "grunt": "^1.5.2",
     "grunt-babel": "^8.0.0",
-    "grunt-contrib-uglify": "^4.0.1",
+    "grunt-contrib-uglify": "^5.2.1",
     "istanbul": "^1.1.0-alpha.1",
     "load-grunt-tasks": "^5.1.0",
     "mocha": "^7.1.1",
