@@ -1,6 +1,6 @@
 {
   "name": "wampy-cra",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "Wampy.js challenge response authentication (CRA) plugin",
   "author": "Konstantin Burkalev <KSDaemon@ya.ru> (http://ksdaemon.ru)",
   "license": "MIT",
@@ -17,19 +17,25 @@
     "crypto-js": "^4.1.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.10",
-    "babel-preset-env": "^1.7.0",
-    "babel-register": "^6.26.0",
+    "@babel/core": "^7.19.1",
+    "@babel/preset-env": "^7.19.1",
+    "@babel/register": "^7.18.9",
+    "babelify": "^10.0.0",
+    "c8": "^7.12.0",
     "chai": "^4.3.6",
     "coveralls": "^3.1.1",
     "grunt": "^1.5.2",
     "grunt-babel": "^8.0.0",
     "grunt-contrib-uglify": "^5.2.1",
-    "istanbul": "^1.1.0-alpha.1",
+    "karma": "^6.4.1",
+    "karma-browserify": "^8.1.0",
+    "karma-chrome-launcher": "^3.1.1",
+    "karma-coverage": "^2.2.0",
+    "karma-mocha": "^2.0.1",
+    "karma-mocha-reporter": "^2.2.5",
     "load-grunt-tasks": "^5.1.0",
     "mocha": "^7.1.1",
-    "mocha-lcov-reporter": "^1.3.0",
-    "nyc": "^15.1.0"
+    "mocha-lcov-reporter": "^1.3.0"
   },
   "keywords": [
     "WAMP",
@@ -43,19 +49,9 @@
     "build": "grunt",
     "lint": "eslint src",
     "lint:fix": "eslint --fix src",
-    "test": "NODE_ENV=test nyc ./node_modules/mocha/bin/mocha --exit  --require babel-core/register -R spec",
-    "cover": "nyc report"
-  },
-  "nyc": {
-    "include": [
-      "src/*.js"
-    ],
-    "report-dir": "./coverage",
-    "temp-dir": "./coverage",
-    "reporter": [
-      "lcov",
-      "text-summary",
-      "html"
-    ]
+    "test": "npm run test:node & npm run test:browser",
+    "test:node": "NODE_ENV=test c8 ./node_modules/mocha/bin/mocha --exit  --require @babel/register -R spec",
+    "test:browser": "node ./node_modules/karma/bin/karma start karma.conf.js",
+    "cover": "c8 report"
   }
 }
