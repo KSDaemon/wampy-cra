@@ -17,13 +17,13 @@ module.exports = function (config) {
         browserify: {
             transform: [['babelify', { 'presets': ['@babel/preset-env'] }]]
         },
-        plugins: [
-            'karma-coverage',
-            'karma-browserify',
-            'karma-mocha',
-            'karma-mocha-reporter',
-            'karma-chrome-launcher'
-        ],
+        // plugins: [
+        //     'karma-coverage',
+        //     'karma-browserify',
+        //     'karma-mocha',
+        //     'karma-mocha-reporter',
+        //     'karma-chrome-launcher'
+        // ],
         reporters: ['mocha', 'coverage'],
         coverageReporter: {
             dir: 'coverage/',
