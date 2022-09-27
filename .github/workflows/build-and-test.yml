@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [10, 12, 14, 16]
+        node-version: [12, 14, 16, 18]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -23,7 +23,7 @@ jobs:
       - run: npm ci
       - run: npm test
       - name: Create test coverage report
-        run: ./node_modules/nyc/bin/nyc.js report --reporter=lcovonly
+        run: ./node_modules/c8/bin/c8.js report --reporter=lcovonly
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:
