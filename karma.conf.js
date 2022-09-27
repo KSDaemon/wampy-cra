@@ -7,16 +7,24 @@ module.exports = function (config) {
         frameworks: ['mocha', 'browserify'],
         exclude: [],
         files: [{
-            pattern: 'test/!(wampy-crossbar)-test.js',
+            pattern: 'test/*.js',
             watched: false
         }],
         preprocessors: {
+            'src/*.js'   : ['coverage'],
             'test/*-test.js': ['browserify']
         },
-
         browserify: {
             transform: [['babelify', { 'presets': ['@babel/preset-env'] }]]
         },
+        plugins: [
+            'karma-coverage',
+            'karma-browserify',
+            'karma-mocha',
+            'karma-mocha-reporter',
+            'karma-chrome-launcher'
+        ],
+        reporters: ['mocha', 'coverage'],
         coverageReporter: {
             dir: 'coverage/',
             reporters: [
@@ -26,7 +34,6 @@ module.exports = function (config) {
             ]
         },
         webpackServer: {noInfo: true},
-        reporters: ['mocha', 'coverage'],
         port: 9876,
         colors: true,
         browserNoActivityTimeout: 60000,
