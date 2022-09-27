@@ -2,8 +2,8 @@
  * Created by KSDaemon on 19.05.16.
  */
 
-var expect = require('chai').expect,
-    wampyCra = require('./../src/wampy-cra'),
+const expect = require('chai').expect,
+    wampyCra = require('../src/wampy-cra'),
     secret = 'secretKey',
     salt = 'secretSalt',
     challenge = '{"authrole": "commonuser", ' +
@@ -17,27 +17,27 @@ var expect = require('chai').expect,
 describe('Wampy-cra plugin', function () {
 
     it('allows to sign challenge message with secret key using SHA256', function () {
-        var res = wampyCra.sign(secret, challenge);
+        let res = wampyCra.signManual(secret, challenge);
 
         expect(res).to.be.equal('pKj6AlpNYn7QKqAZD0WctTVO+nxpSG1kT9muLzbv5Mo=');
     });
 
     it('allows to generate derived key using PBKDF2 scheme', function () {
-        var res;
+        let res;
 
-        res = wampyCra.derive_key(secret, salt);
+        res = wampyCra.deriveKey(secret, salt);
         expect(res).to.be.equal('PjhbMq82TzEZgl7/qKoUrk2ZdYl3sBciwBVSnE7ZCYM=');
 
-        res = wampyCra.derive_key(secret, salt, 500);
+        res = wampyCra.deriveKey(secret, salt, 500);
         expect(res).to.be.equal('t/+iDiMZLt/mFSzbtq7vJHdExA3FtBu0LukzpTFYBpI=');
 
-        res = wampyCra.derive_key(secret, salt, 2000, 16);
+        res = wampyCra.deriveKey(secret, salt, 2000, 16);
         expect(res).to.be.equal('ER8wnMRXtdNgY8tJ37FkhQ==');
     });
 
     it('allows to automatically detect requested WAMP auth method and produce signed message', function () {
-        var res,
-            auto = wampyCra.auto(secret),
+        let res,
+            auto = wampyCra.sign(secret),
             challengeInfo = {
                 challenge : challenge,
                 iterations: 100,
@@ -57,8 +57,7 @@ describe('Wampy-cra plugin', function () {
     });
 
     it('throws error while using auto method, if auth method is not recognized', function () {
-        var res,
-            auto = wampyCra.auto(secret),
+        let auto = wampyCra.sign(secret),
             challengeInfo = {
                 challenge : challenge,
                 iterations: 100,

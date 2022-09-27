@@ -27,7 +27,7 @@
         isNode = (typeof process === 'object' && Object.prototype.toString.call(process) === '[object process]'),
         crypto = isNode ? require('crypto') : require('crypto-js');
 
-    function derive_key (secret, salt, iterations = 1000, keylen = 32) {
+    function deriveKey (secret, salt, iterations = 1000, keylen = 32) {
         let key;
 
         if (isNode) {
@@ -45,7 +45,7 @@
         }
     }
 
-    function sign (key, challenge) {
+    function signManual (key, challenge) {
         if (isNode) {
             let hmac = crypto.createHmac('sha256', key);
             hmac.update(challenge);
@@ -55,15 +55,15 @@
         }
     }
 
-    function auto (secret) {
+    function sign (secret) {
 
         return function (method, info) {
             if (method === 'wampcra') {
 
                 if (info.salt) {
-                    return sign(derive_key(secret, info.salt, info.iterations, info.keylen), info.challenge);
+                    return signManual(deriveKey(secret, info.salt, info.iterations, info.keylen), info.challenge);
                 } else {
-                    return sign(secret, info.challenge);
+                    return signManual(secret, info.challenge);
                 }
 
             } else {
@@ -72,9 +72,9 @@
         };
     }
 
-    WampyCra.derive_key = derive_key;
+    WampyCra.deriveKey = deriveKey;
+    WampyCra.signManual = signManual;
     WampyCra.sign = sign;
-    WampyCra.auto = auto;
 
     return WampyCra;
 
