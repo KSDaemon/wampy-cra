@@ -1,6 +1,6 @@
 "use strict";
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && _typeof(Symbol.iterator) === "symbol") { _typeof = function (_typeof2) { function _typeof(_x3) { return _typeof2.apply(this, arguments); } _typeof.toString = function () { return _typeof2.toString(); }; return _typeof; }(function (obj) { return typeof obj === "undefined" ? "undefined" : _typeof(obj); }); } else { _typeof = function (_typeof3) { function _typeof(_x4) { return _typeof3.apply(this, arguments); } _typeof.toString = function () { return _typeof3.toString(); }; return _typeof; }(function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof(obj); }); } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 /**
  * Project: wampy-cra.js
@@ -25,10 +25,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       isNode = (typeof process === "undefined" ? "undefined" : _typeof(process)) === 'object' && Object.prototype.toString.call(process) === '[object process]',
       crypto = isNode ? require('crypto') : require('crypto-js');
 
-  function derive_key(secret, salt) {
+  function deriveKey(secret, salt) {
     var iterations = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000;
     var keylen = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 32;
-    var key = void 0;
+    var key;
 
     if (isNode) {
       key = crypto.pbkdf2Sync(secret, salt, iterations, keylen, 'sha256');
@@ -44,7 +44,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     }
   }
 
-  function sign(key, challenge) {
+  function signManual(key, challenge) {
     if (isNode) {
       var hmac = crypto.createHmac('sha256', key);
       hmac.update(challenge);
@@ -54,13 +54,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     }
   }
 
-  function auto(secret) {
+  function sign(secret) {
     return function (method, info) {
       if (method === 'wampcra') {
         if (info.salt) {
-          return sign(derive_key(secret, info.salt, info.iterations, info.keylen), info.challenge);
+          return signManual(deriveKey(secret, info.salt, info.iterations, info.keylen), info.challenge);
         } else {
-          return sign(secret, info.challenge);
+          return signManual(secret, info.challenge);
         }
       } else {
         throw new Error('Unknown authentication method requested!');
@@ -68,9 +68,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     };
   }
 
-  WampyCra.derive_key = derive_key;
+  WampyCra.deriveKey = deriveKey;
+  WampyCra.signManual = signManual;
   WampyCra.sign = sign;
-  WampyCra.auto = auto;
   return WampyCra;
 });
 //# sourceMappingURL=wampy-cra.js.map
