@@ -4,6 +4,9 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        clean: {
+            dist: ['dist/*']
+        },
         uglify: {
             options: {
                 compress: {
@@ -14,7 +17,7 @@ module.exports = function (grunt) {
             },
             default: {
                 files: {
-                    'build/wampy-cra.min.js': ['build/wampy-cra.js']
+                    'dist/wampy-cra.min.js': ['dist/wampy-cra.js']
                 }
             }
         },
@@ -25,11 +28,11 @@ module.exports = function (grunt) {
             },
             dist: {
                 files: {
-                    'build/wampy-cra.js': 'src/wampy-cra.js'
+                    'dist/wampy-cra.js': 'src/wampy-cra.js'
                 }
             }
         }
     });
 
-    grunt.registerTask('default', ['babel', 'uglify']);
+    grunt.registerTask('default', ['clean', 'babel', 'uglify']);
 };
