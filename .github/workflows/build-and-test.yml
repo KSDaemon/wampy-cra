@@ -21,7 +21,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci
-      - run: npm run test:node
+      - run: npm run test
       - name: Create test coverage report
         run: ./node_modules/c8/bin/c8.js report --reporter=lcovonly
       - name: Coveralls
