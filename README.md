@@ -19,7 +19,7 @@ wampy-cra exposes 3 methods:
 * **sign(secret)**. Probably the only function you need. Used to automatically create a
 signed message, using only secret key. This function can be passed as onChallenge callback.
 
-See usage examples in Wampy.js docs section
+See examples in Wampy.js docs section
 ["Challenge Response Authentication"](https://github.com/KSDaemon/wampy.js#challenge-response-authentication)
 
 Thanks JetBrains for the best IDEs and support for open source!
@@ -46,7 +46,3 @@ Thanks JetBrains for the best IDEs and support for open source!
 
 [jetbrains logo]: jetbrains.svg
 [jetbrains url]: (https://www.jetbrains.com)
-
-
-
-
