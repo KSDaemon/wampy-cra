@@ -27,7 +27,7 @@
     "crypto-js": "^4.1.1"
   },
   "peerDependencies": {
-    "wampy": "^7.0.0"
+    "wampy": ">= 7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.19.1",
