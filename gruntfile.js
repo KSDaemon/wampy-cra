@@ -17,6 +17,8 @@ module.exports = function (grunt) {
             },
             default: {
                 files: {
+                    'dist/wampy-cra-node.min.js': ['dist/wampy-cra-node.js'],
+                    'dist/wampy-cra-browser.min.js': ['dist/wampy-cra-browser.js'],
                     'dist/wampy-cra.min.js': ['dist/wampy-cra.js']
                 }
             }
@@ -28,6 +30,8 @@ module.exports = function (grunt) {
             },
             dist: {
                 files: {
+                    'dist/wampy-cra-node.js': 'src/nodeEntry.js',
+                    'dist/wampy-cra-browser.js': 'src/browserEntry.js',
                     'dist/wampy-cra.js': 'src/wampy-cra.js'
                 }
             }

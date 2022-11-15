@@ -3,7 +3,8 @@
  */
 
 const expect = require('chai').expect,
-    wampyCra = require('../src/wampy-cra'),
+    isNode = (typeof process === 'object' && Object.prototype.toString.call(process) === '[object process]'),
+    wampyCra = isNode? require('../src/nodeEntry') : require('../src/browserEntry'),
     secret = 'secretKey',
     salt = 'secretSalt',
     challenge = '{"authrole": "commonuser", ' +

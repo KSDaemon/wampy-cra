@@ -10,72 +10,54 @@
  *
  */
 
-// Module boilerplate to support browser globals and browserify and AMD.
-(
-    typeof define === 'function' ? function (m) {
-        define('WampyCra', m);
-    } :
-        typeof exports === 'object' ? function (m) {
-            module.exports = m();
-        } :
-            function (m) {
-                this.WampyCra = m();
-            }
-)(function () {
+const isNode = (typeof process === 'object' && Object.prototype.toString.call(process) === '[object process]');
+let crypto;
 
-    const WampyCra = {},
-        isNode = (typeof process === 'object' && Object.prototype.toString.call(process) === '[object process]'),
-        crypto = isNode ? require('crypto') : require('crypto-js');
+export function setCrypto(lib) {
+    crypto = lib;
+}
 
-    function deriveKey (secret, salt, iterations = 1000, keylen = 32) {
-        let key;
+export function deriveKey(secret, salt, iterations = 1000, keylen = 32) {
+    let key;
 
-        if (isNode) {
-            key = crypto.pbkdf2Sync(secret, salt, iterations, keylen, 'sha256');
-            return key.toString('base64');
-        } else {
-            let config = {
-                keySize   : keylen / 4,
-                iterations: iterations,
-                hasher    : crypto.algo.SHA256
-            };
-
-            key = crypto.PBKDF2(secret, salt, config);
-            return key.toString(crypto.enc.Base64);
-        }
-    }
-
-    function signManual (key, challenge) {
-        if (isNode) {
-            let hmac = crypto.createHmac('sha256', key);
-            hmac.update(challenge);
-            return hmac.digest('base64');
-        } else {
-            return crypto.HmacSHA256(challenge, key).toString(crypto.enc.Base64);
-        }
-    }
-
-    function sign (secret) {
-
-        return function (method, info) {
-            if (method === 'wampcra') {
-
-                if (info.salt) {
-                    return signManual(deriveKey(secret, info.salt, info.iterations, info.keylen), info.challenge);
-                } else {
-                    return signManual(secret, info.challenge);
-                }
-
-            } else {
-                throw new Error('Unknown authentication method requested!');
-            }
+    if (isNode) {
+        key = crypto.pbkdf2Sync(secret, salt, iterations, keylen, 'sha256');
+        return key.toString('base64');
+    } else {
+        let config = {
+            keySize: keylen / 4,
+            iterations: iterations,
+            hasher: crypto.algo.SHA256
         };
+
+        key = crypto.PBKDF2(secret, salt, config);
+        return key.toString(crypto.enc.Base64);
     }
+}
 
-    WampyCra.deriveKey = deriveKey;
-    WampyCra.signManual = signManual;
-    WampyCra.sign = sign;
+export function signManual(key, challenge) {
+    if (isNode) {
+        let hmac = crypto.createHmac('sha256', key);
+        hmac.update(challenge);
+        return hmac.digest('base64');
+    } else {
+        return crypto.HmacSHA256(challenge, key).toString(crypto.enc.Base64);
+    }
+}
 
-    return WampyCra;
+export function sign(secret) {
 
-});
+    return function (method, info) {
+        if (method === 'wampcra') {
+
+            if (info.salt) {
+                return signManual(deriveKey(secret, info.salt, info.iterations, info.keylen), info.challenge);
+            } else {
+                return signManual(secret, info.challenge);
+            }
+
+        } else {
+            throw new Error('Unknown authentication method requested!');
+        }
+    };
+}
